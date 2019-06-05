@@ -1,12 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+var template = (
+    <div>
+        <h1>{app.title}</h1>
+        {/* render paragraph only if subtitle exists */}
+        {app.subtitle && <p>{app.subtitle}</p>}
+        {app.options.length > 0 ? 'Here are your options' : 'No options to show'}
+        <ol>
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+        </ol>
+    </div>
+);
+
+// practicing
+
+// var templateTwo = (
+//     <div>
+//         <h1>Marzena Szopinska</h1>
+//         <p>Age: 29</p>
+//         <p>Location: Poland</p>
+//     </div>
+// );
+
+// render the app
+ReactDOM.render(template, document.getElementById('root'));
