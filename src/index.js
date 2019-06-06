@@ -29,6 +29,10 @@ const onRemoveAll = () => {
     renderApp();
 };
 
+const onMakeDecision = () => {
+    
+};
+
 const renderApp = () => {
     const template = (
         <div>
@@ -37,11 +41,12 @@ const renderApp = () => {
             {app.subtitle && <p>{app.subtitle}</p>}
             {app.options.length > 0 ? 'Here are your options' : 'No options to show'}
             <p>{app.options.length}</p>
+            <button onClick={onMakeDecision}>What Should I Do?</button>
             <button onClick={onRemoveAll}>Remove All</button>
             <ol>
-                <li>One</li>
-                <li>Two</li>
-                <li>Three</li>
+                { /* render the options list */
+                    app.options.map((option) => <li key={option}>{option}</li>)
+                }
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type='text' name='option' />
