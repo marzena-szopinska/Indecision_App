@@ -15,8 +15,37 @@ class IndecisionApp extends React.Component {
 
         // set up default state object
         this.state = {
+          // if options arent provided then use default set up for props
             options: props.options
         };
+    }
+
+    componentDidMount() {
+      // catch an error if the json data that has been passed in is not valid
+      try {
+        // fetching data from the local storage
+        // get the data and store it in json variable
+        const json = localStorage.getItem('options');
+        // convert string into javascript array
+        const options = JSON.parse(json);
+        // set state if options is not null
+        if(options){
+          this.setState(() => ({ options: options })); // or shortcut this.setState(() => ({ options }));
+        }
+      } catch(e) {
+        // Do nothing at all - fall back to the empty array which is the default value
+      }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+      // save data only if the state length actually changes (so if the state doeasnt change there is no need to save the data)
+      if(prevState.options.length !== this.state.options.length) {
+        // take an object and convert it into string
+        const json = JSON.stringify(this.state.options);
+        // save string representation of options object into local storage - remember local storage works only with strings
+        localStorage.setItem('options', json);
+      }
+
     }
 
     handleAddOption(option) {
@@ -97,6 +126,7 @@ const Options = (props) => {
   return (
     <div>
       <button onClick={props.handleDeleteOptions}>Remove All</button>
+      {props.options.length === 0 && <p>Please add an option to get started</p>}
       { /* Render new option tag for each option inside the array, set the key and the text value */
           props.options.map((option) => <Option key={option} optionText={option} handleDeleteOption={props.handleDeleteOption} />)
       }
@@ -135,8 +165,11 @@ class AddOption extends React.Component {
 
     this.setState(() => ({ error: error }));
 
-    // clear the input
-    e.target.elements.option.value = '';
+    if(!error){
+        // clear the input
+        e.target.elements.option.value = '';
+    }
+
   }
   render(){
     return (
