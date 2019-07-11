@@ -22,7 +22,7 @@ class IndecisionApp extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount() { // fetch data
       // catch an error if the json data that has been passed in is not valid
       try {
         // fetching data from the local storage
@@ -39,7 +39,7 @@ class IndecisionApp extends React.Component {
       }
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) { // save data
       // save data only if the state length actually changes (so if the state doeasnt change there is no need to save the data)
       if(prevState.options.length !== this.state.options.length) {
         // take an object and convert it into string
