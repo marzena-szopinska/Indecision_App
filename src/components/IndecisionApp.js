@@ -82,7 +82,7 @@ class IndecisionApp extends React.Component {
     render(){
         const subtitle = 'Put your life in the hands of a computer';
         return (
-            <div>
+            <div className='indecision-app'>
                 <Header subtitle={subtitle}/>
                 <div className='container'>
                   <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
