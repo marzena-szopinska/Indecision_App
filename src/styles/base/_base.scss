@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; // now we are working with 10 based px for rem so 2.2rem = 22px etc
+}
+
+body {
+    font-size: 1.6rem; // 16px
+    font-family: 'Barriecito', cursive;
+}
