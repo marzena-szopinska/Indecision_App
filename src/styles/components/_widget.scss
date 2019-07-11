@@ -1,0 +1,23 @@
+// widget
+.widget {
+    background-color: $light-blue-color;
+    margin-bottom: $xl-size;
+}
+
+// element selector
+.widget__message {
+    color: $light-green-color;
+    padding: $l-size;
+    text-align: center;
+    border-bottom: 1px solid lighten($light-blue-color, 10%);
+}
+
+// widget header
+.widget-header { // block  selector
+    background-color: $blue-color;
+    color: $light-green-color;
+    padding: $m-size;
+    display: flex;
+    justify-content: space-between;
+}
+
