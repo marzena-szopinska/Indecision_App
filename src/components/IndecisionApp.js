@@ -74,6 +74,11 @@ class IndecisionApp extends React.Component {
         this.setState(() => ({ selectedOption: pickedOption }));
     };
 
+    handleModalClose = () => {
+      // clode the modal window
+      this.setState(() => ({ selectedOption: undefined }));
+    };
+
     render(){
         const subtitle = 'Put your life in the hands of a computer';
         return (
@@ -82,7 +87,7 @@ class IndecisionApp extends React.Component {
                 <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
                 <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} handleDeleteOption={this.handleDeleteOption}/>
                 <AddOption handleAddOption={this.handleAddOption}/>
-                <OptionModal selectedOption={this.state.selectedOption}/>
+                <OptionModal selectedOption={this.state.selectedOption} handleModalClose={this.handleModalClose}/>
             </div>
         );
     }
