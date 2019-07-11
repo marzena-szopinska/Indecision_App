@@ -3,24 +3,13 @@ import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import AddOption from './AddOption';
+import OptionModal from './OptionModal';
 
 class IndecisionApp extends React.Component {
-    constructor(props) {
-        super(props);
-        // bind this for handleDeleteOptions method
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        // bind this for handlePick method
-        this.handlePick = this.handlePick.bind(this);
-        // bind this for handleAddOption method
-        this.handleAddOption = this.handleAddOption.bind(this);
-        // bind this for handleDeleteOption method
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-
-        // set up default state object
-        this.state = {
-            options: []
-        };
-    }
+    state = {
+        options: [],
+        selectedOption: undefined // state responsible for showing and hiding the modal window
+    };
 
     componentDidMount() { // fetch data
       // catch an error if the json data that has been passed in is not valid
@@ -50,7 +39,7 @@ class IndecisionApp extends React.Component {
 
     }
 
-    handleAddOption(option) {
+    handleAddOption = (option) => {
         if(!option) {
             return 'Enter valid value to add item';
         } else if(this.state.options.indexOf(option) > -1) {
@@ -60,30 +49,30 @@ class IndecisionApp extends React.Component {
         this.setState((prevState) => ({
           // merge a single item with options array using concat : concat(options) or concat([options])
           options: prevState.options.concat(option)}));
-    }
+    };
 
-    handleDeleteOptions() {
+    handleDeleteOptions = () => {
         // clean the options array
         this.setState(() => ({ options: [] }));
-    }
+    };
 
-    handleDeleteOption(optionToRemove){
+    handleDeleteOption = (optionToRemove) => {
       this.setState((prevState) => ({
         // loop through options and filter out the option to remove
         options: prevState.options.filter((option) => {
           return optionToRemove !== option;
         })
       }));
-    }
+    };
 
-    handlePick() {
+    handlePick = () => {
         // get the random number
         const randNum = Math.floor(Math.random() * this.state.options.length);
         // pick the item with randomly generated index
         const pickedOption = this.state.options[randNum];
-        // alert the option
-        alert(pickedOption);
-    }
+        // open the modal window
+        this.setState(() => ({ selectedOption: pickedOption }));
+    };
 
     render(){
         const subtitle = 'Put your life in the hands of a computer';
@@ -93,6 +82,7 @@ class IndecisionApp extends React.Component {
                 <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
                 <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} handleDeleteOption={this.handleDeleteOption}/>
                 <AddOption handleAddOption={this.handleAddOption}/>
+                <OptionModal selectedOption={this.state.selectedOption}/>
             </div>
         );
     }

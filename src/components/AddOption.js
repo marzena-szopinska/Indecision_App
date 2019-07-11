@@ -1,16 +1,11 @@
 import React from 'react';
 
 class AddOption extends React.Component {
-    constructor(props){
-      super(props);
-      // bind this for handleAddOption method 
-      this.handleAddOption = this.handleAddOption.bind(this);
-      this.state = {
-          error: undefined
-      };
-    }
+    state = {
+        error: undefined
+    };
   
-    handleAddOption(e) {
+    handleAddOption = (e) => {
       // prevent full page refresh
       e.preventDefault(); 
       // fetch the value typed, and remove all the leading spaces using trim (if there is any)
@@ -25,7 +20,8 @@ class AddOption extends React.Component {
           e.target.elements.option.value = '';
       }
   
-    }
+    };
+    
     render(){
       return (
         <div>
