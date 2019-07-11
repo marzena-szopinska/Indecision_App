@@ -1,0 +1,22 @@
+.add-option-error {
+    color: gray;
+    font-style: italic;
+    padding: 0 $m-size;
+    margin: $m-size 0 0 0;
+}
+
+.add-option {
+    display: flex;
+    padding: $m-size;
+}
+
+.add-option__input {
+   //take up all the availiable space
+    flex-grow: 1;
+    background-color: $dark-blue-color;
+    border: none;
+    border-bottom: .3rem solid darken($dark-blue-color, 10%);
+    margin-right: $s-size;
+    color: $light-green-color;
+    padding: $s-size;
+}
